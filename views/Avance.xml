@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- gvoyage.avance form view -->
+        <record id="gvoyage_avance_view_form" model="ir.ui.view">
+            <field name="name">gvoyage.avance.view.form</field>
+            <field name="model">gvoyage.avance</field>
+            <field name="arch" type="xml">
+                <form string="avance sur salaire">
+                    <sheet>
+                        <group>
+                           <field name="employee_id"/>
+                           <field name="montant"/>
+                           <field name="date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- gvoyage.avance tree view -->
+        <record id="gvoyage_avance_view_tree" model="ir.ui.view">
+            <field name="name">gvoyage.avance.view.tree</field>
+            <field name="model">gvoyage.avance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="montant" sum='total'/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- gvoyage.avance action window -->
+        <record id="gvoyage_avance_action" model="ir.actions.act_window">
+            <field name="name">les avances</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gvoyage.avance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="avance_menu_act" parent="gvoyage_menu" sequence="6" action="gvoyage_avance_action" name="les vances" />
+
+    </data>
+</odoo>

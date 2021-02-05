@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+     <!-- model.name form view -->
+   <record id="gvoyage_product_view_form" model="ir.ui.view">
+     <field name="name">model.name.view.form</field>
+     <field name="model">gvoyage.product</field>
+     <field name="arch" type="xml">
+       <form string="">
+         <sheet>
+           <group>
+             <field name="code"/>
+             <field name="desiniation"/>
+             <field name="commission"/>
+             <field name="Eloignement"/>
+             <field name="comission_Livreur"/>
+             <field name="Type"/>
+            </group>
+         </sheet>
+       </form>
+     </field>
+   </record>
+
+     <!-- model.name tree view -->
+  <record id="gvoyage_product_view_tree" model="ir.ui.view">
+    <field name="name">model.name.view.tree</field>
+    <field name="model">gvoyage.product</field>
+    <field name="arch" type="xml">
+      <tree>
+             <field name="code"/>
+             <field name="desiniation"/>
+             <field name="commission"/>
+             <field name="Type"/>
+      </tree>
+    </field>
+  </record>
+
+    <!-- model.name action window -->
+  <record id="gvoyage_product_action" model="ir.actions.act_window">
+    <field name="name">product</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">gvoyage.product</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">
+        <!-- Add Text Here -->
+      </p><p>
+        <!-- More details about what a user can do with this object will be OK --> 
+      </p>
+    </field>
+  </record>
+
+  <!-- This Menu Item must have a parent and an action -->
+  <!-- This Menu Item Must have a parent -->
+  <menuitem id="gvoyage_menu" name='SAS transport' sequence=""/>
+  <menuitem id="product_menu_act" name="Produits" parent="gvoyage_menu" action="gvoyage_product_action" sequence=""/>
+
+    </data>
+</odoo>

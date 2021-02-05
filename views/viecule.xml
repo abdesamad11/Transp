@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <!-- model.name inherit form view -->
+    <record id="fleet_vehicle_log_fuel_view_form" model="ir.ui.view">
+        <field name="name">model.name.inherit.view.form</field>
+        <field name="model">fleet.vehicle.log.fuel</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='vehicle_id']" position="after">
+                <field name="product_id"/>
+                <field name="picking_id"/>
+                <field name="picking_type_id"/>
+                <field name="location_id"/>
+                <field name="location_dest_id" />
+                <field name="is_gasoil"/>
+                <!-- <field name="charges_ids"/> -->
+                <button attrs="{'invisible': [('picking_id', '!=', False)]}" name="compute_confirm" type="object" string="Confirmer"/>
+           </xpath>
+
+            
+        </field>
+    </record>
+
+
+    <!-- model.name inherit form view -->
+    <record id="fleet_vehicle_view_form" model="ir.ui.view">
+        <field name="name">mfleet.vehicle.inherit.view.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            
+                <xpath expr="//field[@name='company_id']" position="before">
+                    <!-- Add your fields here -->
+                    <group string='Total Kilometers'>
+                        <field name="total_km"/>
+                        <field name="total_fuel"/>
+                        <field name="mconsomassion" widget="progressbar"/>
+                    </group>
+                </xpath>
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+    </data>
+</odoo>

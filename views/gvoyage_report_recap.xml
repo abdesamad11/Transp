@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="gvoyage_report_recap_pivot" model="ir.ui.view">
+            <field name="name">gvoyage.report.recap.pivot</field>
+            <field name="model">gvoyage.report.recap</field>
+            <field name="arch" type="xml">
+                <pivot string="Analysis recap" disable_linking="True">
+                <field name="date"  type='row'/>
+                <field name="nombre_voyage"  type='measure'/>
+                <field name="total_livre"  type='measure'/>
+                <field name="total_eloignement_livre"  type='measure'/>
+                <field name="total_comission_livreur_livre"  type='measure'/>
+                <field name="salaire_emplyees"  type='measure'/>
+                <field name="total_charges"  type='measure'/>
+                <field name="qte_livre"  type='measure'/>
+                <field name="cout_caisse"  type='measure'/>
+                <field name="rondemnt"  type='measure'/>
+                </pivot>
+            </field>
+       </record>
+
+       <!-- gvoyage.report.recap graph view -->
+       <record id="gvoyage_report_recap_view_graph" model="ir.ui.view">
+           <field name="name">gvoyage.report.recap.view.graph</field>
+           <field name="model">gvoyage.report.recap</field>
+           <field name="arch" type="xml">
+            <graph type='pie' string="Graph Description" >
+            </graph>
+           </field>
+       </record>
+
+       <!-- gvoyage.report.recap tree view -->
+       <record id="gvoyage_report_recap_view_tree" model="ir.ui.view">
+           <field name="name">gvoyage.report.recap.view.tree</field>
+           <field name="model">gvoyage.report.recap</field>
+           <field name="arch" type="xml">
+               <tree>
+                  
+                   
+               </tree>
+            </field>
+        </record>
+        <record id="gvoyage_report_recap_search" model="ir.ui.view">
+        <field name="name">gvoyage.report.recap.search</field>
+        <field name="model">gvoyage.report.recap</field>
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+            
+            </search>
+        </field>
+    </record>
+
+    <record id="gvoyage_report_recap_equipe" model="ir.actions.act_window">
+        <field name="name">Analyse recap</field>
+        <field name="res_model">gvoyage.report.recap</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="search_view_id" ref="gvoyage_report_recap_search"/>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+        <field name="help"></field>
+     </record>
+
+     <!-- This Menu Item must have a parent and an action -->
+     <menuitem id="recap_analyse_menu_act" parent="base.menu_board_root" sequence="7" action="gvoyage_report_recap_equipe" name="Rapport Recap" />
+    </data>
+</odoo>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <!-- gvoyage.charge form view -->
+        <record id="gvoyage_charge_view_form" model="ir.ui.view">
+            <field name="name">gvoyage.charge.view.form</field>
+            <field name="model">gvoyage.charge</field>
+            <field name="arch" type="xml">
+                <form string="les charges fix">
+                        <header>
+                            <!-- <button name="confirm" type="object" class="btn-success" string="confirmer"/> -->
+                        </header>
+                    <sheet>
+                        <H1><span>Titre:</span><field name="name"/></H1>
+                        <group>
+                           <field name="date_debut"/>
+                           <field name="type_charge"/>
+                           <field name="total"/>
+                           <field name="currency_id" invisible="1"/>
+                           <field name="notes"/>
+                           <field name="date_fin"/>
+                        </group>
+                        <notebook>
+                            <page string="sous_charges_ids" name="les sous charges">
+                                <field name="sous_charges_ids">
+                                    <tree>
+                                        <field name="type_charge"/>
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                        <field name="currency_id" invisible="1" />
+                                        <field name="total"/>
+                                    </tree>
+                                </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- gvoyage.charge tree view -->
+        <record id="gvoyage_charge_view_tree" model="ir.ui.view">
+            <field name="name">gvoyage.charge.view.tree</field>
+            <field name="model">gvoyage.charge</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_debut"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="notes"/>
+                    <field name="total"/>
+                </tree>
+            </field>
+        </record>
+
+   <!-- gvoyage.charge action window -->
+   <record id="gvoyage_charge_action" model="ir.actions.act_window">
+       <field name="name">les charges</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">gvoyage.charge</field>
+       <field name="view_mode">tree,form</field>
+       <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+               <!-- Add Text Here -->
+           </p><p>
+               <!-- More details about what a user can do with this object will be OK --> 
+           </p>
+       </field>
+   </record>
+
+ <!-- gvoyage.charge_variable form view -->
+ <record id="gvoyage_charge_variable_view_form" model="ir.ui.view">
+     <field name="name">gvoyage.charge_variable.view.form</field>
+     <field name="model">gvoyage.charge_variable</field>
+     <field name="arch" type="xml">
+         <form string="">
+             <sheet>
+                
+                 <group>
+                    <field name="type_charge"/>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="currency_id" invisible="1" />
+                    <field name="total"/>
+                    <field name="charge_parent_id" attrs="{'invisible': [('charge_parent_id', '=', 'False')]}"/>
+                 </group>
+             </sheet>
+         </form>
+     </field>
+ </record>
+
+ <!-- gvoyage.charge_variable tree view -->
+ <record id="gvoyage_charge_variable_view_tree" model="ir.ui.view">
+     <field name="name">gvoyage.charge_variable.view.tree</field>
+     <field name="model">gvoyage.charge_variable</field>
+     <field name="arch" type="xml">
+         <tree>
+            <field name="type_charge"/>
+            <field name="name"/>
+            <field name="date"/>
+            <field name="currency_id" invisible="1" />
+            <field name="total"/>
+         </tree>
+     </field>
+ </record>
+ 
+ <!-- gvoyage.charge_variable action window -->
+ <record id="gvoyage_charge_variable_action" model="ir.actions.act_window">
+     <field name="name">Les charges variables</field>
+     <field name="type">ir.actions.act_window</field>
+     <field name="res_model">gvoyage.charge_variable</field>
+     <field name="view_mode">tree,form</field>
+     <field name="help" type="html">
+         <p class="oe_view_nocontent_create">
+             <!-- Add Text Here -->
+         </p><p>
+             <!-- More details about what a user can do with this object will be OK --> 
+         </p>
+     </field>
+ </record>
+     <!-- This Menu Item must have a parent and an action -->
+    <!-- This Menu Item Must have a parent -->
+
+
+
+    <!-- gvoyage.prime form view -->
+    <record id="gvoyage_prime_view_form" model="ir.ui.view">
+        <field name="name">gvoyage.prime.view.form</field>
+        <field name="model">gvoyage.prime</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="date"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="total" />
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- gvoyage.prime tree view -->
+    <record id="gvoyage_prime_view_tree" model="ir.ui.view">
+        <field name="name">gvoyage.prime.view.tree</field>
+        <field name="model">gvoyage.prime</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="total" sum="total" />
+                <field name="notes"/>
+                <field name="employee_id"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <!-- gvoyage.prime action window -->
+    <record id="gvoyage_prime_action" model="ir.actions.act_window">
+        <field name="name">gvoyage.prime.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gvoyage.prime</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+        </field>
+    </record>
+    <!-- This Menu Item must have a parent and an action -->
+    <!-- This Menu Item Must have a parent -->
+
+    <menuitem id="prime_menu_act" name="les primes" parent="gvoyage_menu" action="gvoyage_prime_action" sequence=""/>
+
+    <menuitem id="charge_menu_parent_act" name="les charge" action="gvoyage_charge_variable_action" parent="gvoyage_menu" />
+    <!-- <menuitem id="charge_variable_menu_act" name="charge variable" parent="charge_menu_parent_act" action="gvoyage_charge_variable_action" sequence=""/> -->
+    <!-- <menuitem id="charge_menu_act" name="charges fix" parent="charge_menu_parent_act" action="gvoyage_charge_action" sequence=""/> -->
+    <menuitem id="emplyees_menu_act" parent="gvoyage_menu" sequence="1" action="hr.open_view_employee_list_my" name="Liste  des emplyees" />
+
+    </data>
+</odoo>

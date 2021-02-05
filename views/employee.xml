@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- hr.employee inherit form view -->
+        <record id="view_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.inherit.view.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@id='hr_presence_button']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//button[@name='%(hr.plan_wizard_action)d']" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                        <field name="salaire" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

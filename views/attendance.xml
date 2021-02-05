@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <data>
+
+    <!-- gvoyage.workday form view -->
+    <record id="gvoyage_workday_view_form" model="ir.ui.view">
+        <field name="name">gvoyage.workday.view.form</field>
+        <field name="model">gvoyage.workday</field>
+        <field name="arch" type="xml">
+            <form string="workday">
+                <sheet>
+                    <h1><field name="rec_name" /></h1>
+                    <group>
+                        <field name="work_day" readonly="1"/>
+                        <field name="create_uid" invisible='1'/>
+                    </group>
+                    <notebook>
+                        <page name="emplyees" attrs="{'invisible': [('create_uid', '=',False)]}" string="emplyees" >
+                            <field name="attendance_ids"  context="{'default_work_day': work_day,'default_state': 'absent'}">
+                                <tree decoration-danger="state=='absent'" editable="bottom" decoration-success="state=='present'">
+                                    <field name="employee_id" />
+                                    <field name="work_day"/>
+                           <field name="salaire"/>
+
+                                    <field name="state"/>
+                                        <button name="mark_present" attrs="{'invisible':[('state','=','present')]}" type="object" string="present" class="btn btn-success"/>
+                                        <button name="mark_absent" attrs="{'invisible':[('state','=','absent')]}" type="object" string="absent" class="btn btn-danger"/>
+                                    </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- gvoyage.workday action window -->
+    <record id="gvoyage_workday_action" model="ir.actions.act_window">
+        <field name="name">pointage par jours</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gvoyage.workday</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            </p>
+        </field>
+    </record>
+
+
+       <!-- gvoyage.attendance form view -->
+       <record id="gvoyage_attendance_view_form" model="ir.ui.view">
+           <field name="name">gvoyage.attendance.view.form</field>
+           <field name="model">gvoyage.attendance</field>
+           <field name="arch" type="xml">
+               <form string="pointage">
+                   <sheet>
+                       <group>
+                            <field name="employee_id"/>
+                           <field name="work_day"/>
+
+                           <field name="state"/>
+                           <field name="salaire"/>
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+       </record>
+
+       <!-- gvoyage.attendance pivot view -->
+       <record id="gvoyage_attendance_view_pivot" model="ir.ui.view">
+           <field name="name">gvoyage.attendance.view.pivot</field>
+           <field name="model">gvoyage.attendance</field>
+           <field name="arch" type="xml">
+               <pivot string="Attendance">
+                   
+               </pivot>
+           </field>
+       </record>
+
+       <!-- gvoyage.attendance tree view -->
+       <record id="gvoyage_attendance_view_tree" model="ir.ui.view">
+           <field name="name">gvoyage.attendance.view.tree</field>
+           <field name="model">gvoyage.attendance</field>
+           <field name="arch" type="xml">
+               <tree>
+                    <field name="employee_id"/>
+                    <field name="work_day"/>
+                    <field name="state"/>
+               </tree>
+           </field>
+       </record>
+
+       <!-- gvoyage.attendance search view -->
+       <record id="gvoyage_attendance_view_search" model="ir.ui.view">
+           <field name="name">gvoyage.attendance.view.search</field>
+           <field name="model">gvoyage.attendance</field>
+           <field name="arch" type="xml">
+               <search string="">
+                    <!-- <filter string="Presque à la fin " name="my_invoice" domain="[('percent', '&gt;', '80')]"/> -->
+               </search>
+           </field>
+       </record>
+   <!-- gvoyage.attendance action window -->
+   <record id="gvoyage_attendance_action" model="ir.actions.act_window">
+       <field name="name">pointage des emplyees</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">gvoyage.attendance</field>
+       <field name="view_mode">tree,pivot,form</field>
+       <field name="help" type="html">
+           <p class="oe_view_nocontent_create">
+               <!-- Add Text Here -->
+           </p><p>
+               <!-- More details about what a user can do with this object will be OK --> 
+           </p>
+       </field>
+   </record>
+</data>
+
+</odoo>

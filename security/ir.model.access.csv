@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gvoyage_product,access.gvoyage.product,model_gvoyage_product,,1,1,1,1
+access_gvoyage_voyage,access.gvoyage.voyage,model_gvoyage_voyage,,1,1,1,1
+access_gvoyage_voyage_produit,access.gvoyage.voyage_produit,model_gvoyage_voyage_produit,,1,1,1,1
+access_gvoyage_voyage_produit_retour,access.gvoyage.voyage_produit_retour,model_gvoyage_voyage_produit_retour,,1,1,1,1
+access_gvoyage_workday,access.gvoyage.workday,model_gvoyage_workday,,1,1,1,1
+access_gvoyage_destination,access.gvoyage.destination,model_gvoyage_destination,,1,1,1,1
+access_gvoyage_attendance,access.gvoyage.attendance,model_gvoyage_attendance,,1,1,1,1
+access_gvoyage_type_charge,access.gvoyage.type_charge,model_gvoyage_type_charge,,1,1,1,1
+access_gvoyage_charge,access.gvoyage.charge,model_gvoyage_charge,,1,1,1,1
+access_gvoyage_charge_variable,access.gvoyage.charge_variable,model_gvoyage_charge_variable,,1,1,1,1
+access_gvoyage_prime,access.gvoyage.prime,model_gvoyage_prime,,1,1,1,1
+access_gvoyage_cheque,access.gvoyage.cheque,model_gvoyage_cheque,,1,1,1,1
+access_gvoyage_avance,access.gvoyage.avance,model_gvoyage_avance,,1,1,1,1
+access_gvoyage_report_pointage,access.gvoyage.report.pointage,model_gvoyage_report_pointage,,1,1,1,1
+

@@ -1,0 +1,190 @@
+<odoo>
+	<data>
+		<!-- model.name form view -->
+		<record id="gvoyage_voyage_view_form" model="ir.ui.view">
+			<field name="name">model.name.view.form</field>
+			<field name="model">gvoyage.voyage</field>
+			<field name="arch" type="xml">
+				<form string="">
+		
+					<sheet>
+            <div class="oe_button_box" name="button_box">
+            <button name="open_Products" type="object" class="oe_stat_button" icon="fa-file-text icon">
+            	importe
+            </button>
+			</div>
+			<h1><span>Referance:</span><field name="referance"/></h1>
+						<group>
+							<field name="currency_id" invisible="1"/>
+							<field name="nombre_factures"/>					
+							<field name="camion" />
+							<field name="chauffeur" />
+							<field name="destination" widget="many2many_tags" />
+							<field name="emplyee_ids" widget="many2many_tags" />
+							<field name="date_depart" />
+
+						</group>
+						<notebook>
+							<page string="sortie">
+								<field name="product_ids" context="{'default_voyage_id':id}">
+									<tree editable="bottom">
+										<field name="product_id" />
+										<field name="desiniation"/>
+										<field name="quantite" sum="Total quantite" />
+										<field name="voyage_id" invisible="1" />
+										<field name="sous_rendement" sum="Total Commision" />
+										<field name="sous_eloignement" sum="Total Eloignement" />
+										<field name="sous_comission_Livreur" sum='Total Comission Livreur'/>
+									</tree>
+								</field>
+							</page>
+							<page string="retour">
+								<field name="voyage_produit_retour_ids" context="{'default_voyage_id':id}">
+									<h3>Retour</h3>
+									<tree editable="bottom">
+										<field name="sortie_ids" widget="many2many_tags"/>
+										<!-- domain on product_id where product_id in p_sortie-->
+										<field name="product_id" domain="[('id','in',sortie_ids)]"/>
+										<field name="quantite" sum="Total quantite"/>
+										<field name="voyage_id" invisible="1" />
+										<field name="sous_rendement_retour"  sum="Total retour" />
+										<field name="sous_Eloignement_retour" sum="total"/>
+										<field name="sous_comission_Livreur_retour"/>
+									</tree>
+								</field>
+							</page>
+							<page string="Les charges">
+								<field name="charges_ids" context="{'default_voyage_id':id}">
+									<tree>
+										<field name="type_charge"/>
+											<field name="name"/>
+											<field name="date"/>
+											<field name="currency_id" invisible="1" />
+											<field name="voyage_id" invisible="1"/>
+											<field name="total" sum="total"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+					<sheet>
+						<H1 class="text-center">Rapport </H1>
+						<table class="table table-striped table-bordered table-sm">
+							<thead class="thead-dark">
+							  <tr>
+								<th scope="col">
+								</th>
+								<th scope="col">Sortie</th>
+								<th scope="col">Retour</th>
+								<th scope="col">livré</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td scope="row" >Qte des produits</td>
+								<td class="bg-primary"><field name="Qte_sortie"/></td>
+								<td class="bg-warning" ><field name="Qte_retour"/></td>
+								<td class="bg-success"><field name="Qte_livre"/></td>
+							  </tr>
+							  <tr>
+								<td scope="row" >Commission</td>
+								<td class="bg-primary"><field name="total_sortie"/></td>
+								<td class="bg-warning"><field name="total_retour"/></td>
+								<td class="bg-success"><field name="total_livre"/></td>
+							  </tr>
+							  <tr>
+								<td scope="row" >Commission Eloignement</td>
+								<td class="bg-primary"><field name="total_sortie_Eloignement"/></td>
+								<td class="bg-warning"><field name="total_retour_Eloignement"/></td>
+								<td class="bg-success"><field name="total_Eloignement_livre"/></td>
+							  </tr>
+							  <tr>
+								<td scope="row" >Commission Livreur </td>
+								<td class="bg-primary"><field name="total_sortie_comission_Livreur"/></td>
+								<td class="bg-warning"><field name="total_retour_comission_Livreur"/></td>
+								<td class="bg-success"><field name="total_comission_Livreur_livre"/></td>
+							  </tr>
+							  <tr class="table">
+								<td colspan="1" ><b>Taux Retour</b></td>
+								<td colspan="3" ><b><field name="taux_retour"/></b></td>
+							</tr>
+							<tr class="table">
+								<td colspan="1" ><b>Chiffre Afaire</b></td>
+								<td colspan="3" ><b><field name="Chiffre_affaire"/></b></td>
+							</tr>
+							<tr class="table">
+								<td colspan="1" ><b>Total des charges</b></td>
+								<td colspan="3" ><b><field name="Charges"/></b></td>
+							</tr>
+							<tr class="table">
+								<td colspan="1" ><b>Cout de caisse</b></td>
+								<td colspan="3" ><b><field name="Taux_caisse"/></b></td>
+							</tr>
+							<tr class="table">
+								<td colspan="1" ><b>Rendement</b></td>
+								<td colspan="3" class="bg-success" ><b><field name="rendement"/></b></td>
+							</tr>
+
+							</tbody>
+						  </table>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!-- gvoyage.voyage graph view -->
+		<record id="gvoyage_voyage_view_graph" model="ir.ui.view">
+			<field name="name">gvoyage.voyage.view.graph</field>
+			<field name="model">gvoyage.voyage</field>
+			<field name="arch" type="xml">
+				<graph string="Graph Description">
+					<!-- Add your fields here -->
+				</graph>
+			</field>
+		</record>
+		<!-- gvoyage.voyage pivot view -->
+		<record id="gvoyage_voyage_view_pivot" model="ir.ui.view">
+			<field name="name">gvoyage.voyage.view.pivot</field>
+			<field name="model">gvoyage.voyage</field>
+			<field name="arch" type="xml">
+				<pivot string="Pivot Description">
+					<!-- Add your fields here -->
+				</pivot>
+			</field>
+		</record>
+		<!-- model.name tree view -->
+		<record id="gvoyage_voyage_view_tree" model="ir.ui.view">
+			<field name="name">model.name.view.tree</field>
+			<field name="model">gvoyage.voyage</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="referance"/>
+					<field name="camion" />
+					<field name="destination" widget="many2many_tags" />
+				</tree>
+			</field>
+		</record>
+		<!-- model.name action window -->
+		<record id="gvoyage_voyage_action" model="ir.actions.act_window">
+			<field name="name">voyages</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">gvoyage.voyage</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					<!-- Add Text Here -->
+				</p>
+				<p>
+					<!-- More details about what a user can do with this object will be OK -->
+				</p>
+			</field>
+		</record>
+
+
+
+
+	
+		<!-- This Menu Item must have a parent and an action -->
+		<menuitem id="voyage_menu_act" name="Les voyages" parent="gvoyage_menu" action="gvoyage_voyage_action" sequence="0" />
+		<menuitem id="pointage_menu_act" name="pointage" parent="gvoyage_menu" action="gvoyage_workday_action" sequence="" />
+	</data>
+</odoo>
